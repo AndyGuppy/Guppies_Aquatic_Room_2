@@ -1,0 +1,27 @@
+<h1>Products</h1><tr><td><form action="/products/new" method="get"><input class="submit_button" type="submit" value="Add a new product"></form></td>  
+</tr>
+
+<br>
+<table>
+  <tr>
+    <th>Specie</th>
+    <th></th>
+    <th>Price</th>
+    <th></th>
+    <th>Qty in Stock</th>
+  </tr>
+  <% for product in @products %>
+  <tr>
+    <td><%= product.specie %></td>
+    <td>|</td>
+    <td>£<%= sprintf("%.2f", product.price) %></td>
+    <td>|</td>
+    <td><%= product.quantity %></td>
+    <td>|</td>
+    <td><form action="/products/<%= product.id() %>/ammend" method="get"><input class="submit_button" type="submit" value="Ammend"></form></td>   
+    <td><form action="/products/<%= product.id() %>/remove" method="post"><input class="submit_button" type="submit" value="Remove"></form></td>  
+    <td><form action="/products/<%= product.id() %>/<%= "products"%>/view" method="get"><input class="submit_button" type="submit" value="More Info"></form></td>  
+  </tr>
+  <% end %>
+</table>
+

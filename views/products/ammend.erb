@@ -1,0 +1,28 @@
+<h2>   Ammend a Product</h2>
+<hr>
+<hr>
+
+<table>
+  <form action="/products/<%= @product.id%>" method="post">
+    <tr><td><label> 
+      Specie:
+      <input type="text" name="specie" value='<%= @product.specie %>'>
+    </label></td></tr>
+    <tr><td><label> 
+      Latin Name:
+      <input type="text" name="latin_ame" value="<%= @product.latin_name %>">
+    </label></td></tr>
+    <tr><td><label> 
+      Price:
+      <input type="text" name="price" value="<%= @product.price %>">
+    </label></td></tr>
+    <tr><td><label> 
+      Quantity in Stock:
+      <input type="number" name="quantity" value="<%= @product.quantity %>">
+    </label></td></tr>
+    <tr><td><label> 
+
+      <tr><td><input type="submit" value="Ammend Product"/></td></tr>
+    </form>
+  </table>
+  <hr>

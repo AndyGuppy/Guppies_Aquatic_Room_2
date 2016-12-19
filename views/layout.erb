@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Guppies Aquatic Room</title>
+  <link href="https://fonts.googleapis.com/css?family=Dekko" rel="stylesheet">
+
+  <link rel="icon" href="/images/fish.png" />
+
+  <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+  <section id = "header">
+    <img src="./../images/logo.png" alt="logo" height="100" width="700"/></section>
+    <section id="menu">
+      <nav>
+
+        <a class="btn" href="/customers">Club Members</a>
+        <a class="btn" href="/products">Inventory</a>
+        <a class="btn" href="/">Currently for Sale</a>
+        <a class="btn" href="/customers/new">Join Club</a>
+        <a class="btn" href="/sales">Basket</a>
+      </nav>
+    </section>
+    <main class="flex flex--row">
+        <section id="content">
+        <br>
+        <%= yield %>
+      </section>
+    </main>
+  </body>
+  </html>

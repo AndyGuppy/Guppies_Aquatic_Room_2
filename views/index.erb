@@ -1,0 +1,21 @@
+<div id="head"><h1>Guppies Aquatic Room</h1></div>
+<p>Welcome to Guppies Aquatics Room</p>
+
+<p>Feel free to have a browse and by all means buy some fish !! <p>
+  <be>
+    <p>If you would like to be kept up to date with latest stock additions feel free to sign the guest book.</p>
+
+
+
+    <% for product in @products %>
+    <div class = "floating-box">
+      <div id= 'image'> <img src="<%=product.image%>" alt="logo" height="100" width="120"/></div>
+      <!-- <div id = 'table'> -->
+      <div>
+        <tr><div id="head"> <%= product.specie %></div></tr>
+        <tr>Price --> £<%= sprintf("%.2f", product.price) %></tr><br>
+        <tr>Avaliable --> <%= product.quantity %>   
+         <form action="/<%= product.id() %>/buy" method="get"><input class="submit_button" type="submit" value="Buy"></form>  
+         <td><form action="/products/<%= product.id() %>/<%= "index"%>/view" method="get"><input class="submit_button" type="submit" value="More Info"></form></td></tr>
+       </div> </div>
+       <% end %>
