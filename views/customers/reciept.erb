@@ -10,21 +10,25 @@
     <th></th>
     <th>Item Total</th>
   </tr>
-<% for basket in @basket %>
-<tr>
-  <td><%= basket.quantity %></td>
-  <td>|</td>
-  <td><%= basket.specie %></td>
-  <td>|</td>
-  <td>£<%= sprintf("%.2f",basket.price) %></td>
-  <td>|</td>
-  <td>£<%=sprintf("%.2f", (basket.price.to_f * basket.quantity.to_i) )%></td>
-  <td>|</td>
+  <% for basket in @basket %>
+  <tr>
+    <td><%= basket.quantity %></td>
+    <td>|</td>
+    <td><%= basket.specie %></td>
+    <td>|</td>
+    <td>£<%= sprintf("%.2f",basket.price) %></td>
+    <td>|</td>
+    <td>£<%=sprintf("%.2f", (basket.price.to_f * basket.quantity.to_i) )%></td>
   </tr><br>
-    <% end %>
+  <% end %></table>
+  <table class="reciept">
+    <tr><td>         </td><td>Start Credit </td><td> = £ </td><td><%= sprintf("%.2f",@customer.funds) %></td></tr>
+    <tr><td>         </td><td>Basket Total </td><td> = £ </td><td><%= sprintf("%.2f",@total) %></td></tr>
+    <tr><td>         </td><td>Credit Balance </td><td> = £ </td><td><%= sprintf("%.2f",@final_balance) %></td></tr></table><br>
+    Thank you for shopping with Guppies Aquatic Room 
 
+    <%= @timestamp %>
 
-    </table>
-    Credit Balance = £ <%= sprintf("%.2f",@customer.funds) %><br>
-    Basket Total = £ <%= sprintf("%.2f",@total) %><br>
-    <tr></div><div>  see if i can get this done </div>
+    <form action="/" method="get"><input class="submit_button" type="submit" value="Take Reciept">
+
+    </div><div id="thanks">  see if i can get this done </div>

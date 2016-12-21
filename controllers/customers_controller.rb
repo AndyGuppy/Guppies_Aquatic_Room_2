@@ -24,10 +24,8 @@ post '/customers' do
   redirect to('/customers')
 end
 
-
-#Check Customer
+#Find Customer while retaining product
 post '/customers/:pid/custcheck' do
-binding.pry
   @product = Product.find(params[:pid])
   @customer = Customer.get_customer_id(params[:name])
 
@@ -37,6 +35,7 @@ binding.pry
     @customer = Customer.find(@customer)
     erb(:"customers/buy")
   end
+
 end
 
 #customer puts product in basket
@@ -45,29 +44,28 @@ post '/customers/:pid/:cid/buy' do
   @product = Product.find(params[:pid])
   @quantity = params[:quantity]
 #build record to send to basket
-@val = {'customer_id' => params[:cid].to_i,'specie' => @product.specie,'price' => @product.price,'quantity' => params[:quantity].to_i}
-
-@basket = Basket.new(@val)
-@basket.save()
-@basket = Basket.all(params[:cid].to_i)
-@total = 0
-for basket in @basket
-  @total += (basket.price * basket.quantity)
+  @val = {'customer_id' => params[:cid].to_i,'specie' => @product.specie,'price' => @product.price,'quantity' => params[:quantity].to_i}
+#Fire record to basket
+  @basket = Basket.new(@val)
+  @basket.save()
+#keep hold of basket contents to pass back
+  @basket = Basket.all(params[:cid].to_i)
+  @total = 0
+#add total of contents of basket
+  for basket in @basket
+    @total += (basket.price.to_f * basket.quantity.to_i)
+  end
+  erb(:"customers/basket")
 end
 
-erb(:"customers/basket")
-end
-
-
-
-
-#delete a pizza by id ( DELETE request)
+#delete a customer by id
 post '/customers/:id/remove' do
   id = params[:id]
   @customer = Customer.destroy(id)
   redirect to('/customers')
 end
 
+#empty the basket
 post '/customers/:id/cancel' do
   id = params[:id]
   @basket = Basket.delete(id)
@@ -80,42 +78,42 @@ get '/customers/find' do
 end
 
 #find customer to retrieve basket
-post ('/customers/custcheck') do
-  
+post ('/customers/custcheck') do 
   @customer = Customer.get_customer_id(params[:name])
 
   if @customer == "Customer Not Found"
+    #Customer is not in the club ;-) send them to join
     erb(:"customers/nomember")
   else
+    #Customer is in the club
     @customer = Customer.get_customer_id(params[:name])
-    
+    #create customer instance
     @customer = Customer.find(@customer)
+    #basket records for this customer
     @basket = Basket.all(@customer.id)
     @total = 0.0
+    #Total of customers basket
     for basket in @basket
-
       @total += (basket.price.to_f * basket.quantity.to_i)
     end
       erb( :"customers/basket" )
   end
 end
 
-#find customer to retrieve basket
+#find customer basket detais by customer name
 get '/customers/mybasket' do
-
   @customer = Customer.get_customer_id(params[:name])
-  
+  #create customer instance
   @customer = Customer.find(@customer)
+  #create customers basket instance
   @basket = Basket.all(@customer.id)
   @total = 0.0
+  #get the total for basket
   for basket in @basket
     @total += (basket.price.to_f * basket.quantity.to_i)
   end
-
-
     erb( :"customers/basket" )
 end
-
 
 #edit customer form
 get '/customers/:id/ammend' do
@@ -123,23 +121,25 @@ get '/customers/:id/ammend' do
   erb(:"customers/ammend")
 end
 
-#update the customer by id ( PUT request)
-post '/customers/:id' do
+#update the customer by id
+post '/customers/:id' do  
   Customer.update(params)
   redirect to('/customers')
-
 end
 
+#Customer pays - still to comment in detail
 post '/customer/:cid/pay' do
-  
   @customer_id = params[:cid]
   @basket = Basket.all(@customer_id)
   @total = 0.0
+  @customer = Customer.find(@customer_id)
   for basket in @basket
     Product.reduced_by(basket.specie,basket.quantity)
     @total += (basket.price.to_f * basket.quantity.to_i)
   end
+  @final_balance = (@customer.funds.to_f - @total.to_f)
   Customer.reduced_by(@customer_id,@total.to_f)
-  # @basket = Basket.delete(id)
+  @timestamp = Time.now
+  Basket.delete(@customer_id)
   erb(:"customers/reciept")
 end

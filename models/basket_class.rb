@@ -21,13 +21,13 @@ class Basket
     @id = basket['id'].to_i
   end
 
-def self.get_many(sql)
+  def self.get_many(sql)
    receipts = SqlRunner.run(sql)
    basket_objects = receipts.map { |receipt| Basket.new (receipt)}
    return basket_objects
  end
 
-def self.delete_all() 
+ def self.delete_all() 
   sql = "DELETE FROM basket"
   SqlRunner.run(sql)
 end

@@ -10,25 +10,25 @@
     <th></th>
     <th>Item Total</th>
   </tr>
-<% for basket in @basket %>
-<tr>
-  <td><%= basket.quantity %></td>
-  <td>|</td>
-  <td><%= basket.specie %></td>
-  <td>|</td>
-  <td>£<%= sprintf("%.2f",basket.price) %></td>
-  <td>|</td>
-  <td>£<%=sprintf("%.2f", (basket.price.to_f * basket.quantity.to_i) )%></td>
-  <td>|</td>
+  <% for basket in @basket %>
+  <tr>
+    <td><%= basket.quantity %></td>
+    <td>|</td>
+    <td><%= basket.specie %></td>
+    <td>|</td>
+    <td>£<%= sprintf("%.2f",basket.price) %></td>
+    <td>|</td>
+    <td>£<%=sprintf("%.2f", (basket.price.to_f * basket.quantity.to_i) )%></td>
+    <td>|</td>
   </tr><br>
-    <% end %>
+  <% end %>
 
 
-    </table>
+</table>
 
-    Basket Total = £ <%= sprintf("%.2f",@total) %><br>
-    <tr>
-<td><form action="/customers/<%= @customer.id() %>/cancel" method="post"><input class="submit_button" type="submit" value="Empty My Basket"></form></td>
-<td><form action="/" method="get"><input class="submit_button" type="submit" value="Add More"></form></td>
-<td><form action="/customer/<%= @customer.id() %>/pay" method="post"><input class="submit_button" type="submit" value="Pay"></form></td></tr>
-<hr>
+Basket Total = £ <%= sprintf("%.2f",@total) %><br>
+<tr>
+  <td><form action="/customers/<%= @customer.id() %>/cancel" method="post"><input class="submit_button" type="submit" value="Empty My Basket"></form></td>
+  <td><form action="/" method="get"><input class="submit_button" type="submit" value="Add More"></form></td>
+  <td><form action="/customer/<%= @customer.id() %>/pay" method="post"><input class="submit_button" type="submit" value="Pay"></form></td></tr>
+  <hr>

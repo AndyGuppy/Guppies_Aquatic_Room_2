@@ -25,15 +25,6 @@ CREATE TABLE products (
 );
 
 
-CREATE TABLE receipts (
-  id SERIAL4 primary key,
-  customer_id INT4 references customers(id) ON DELETE CASCADE,
-  product_id INT4 references products(id) ON DELETE CASCADE,
-  purchase_type VARCHAR(255),
-  Purchase_time text,
-  delivery_type VARCHAR(255)
-);
-
 CREATE TABLE basket (
   id SERIAL4 primary key,
   customer_id INT4 references customers(id) ON DELETE CASCADE,

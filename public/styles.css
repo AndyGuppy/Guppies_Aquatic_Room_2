@@ -35,16 +35,38 @@ body {
   position: center;
   text-align: center;
 }
+
 #head {
   color: lime;
   text-decoration: underline;
 }
+
 #header {
   width: 750px ;
   height: 100px;
   padding:20,0,0,0;
   margin-left: auto ;
   margin-right: auto ;
+}
+
+#image {
+  padding:5px;
+  margin:5px;
+  border:2px solid #021a40;
+  background-color:#fff;
+  width: 121px;
+  height: 101px;
+  float: left;
+}
+
+#image2 {
+  padding:5px;
+  margin:5px;
+  border:2px solid #021a40;
+  background-color:#fff;
+  width: 277px;
+  height: 222px;
+  float: left;
 }
 
 .floating-box {
@@ -93,8 +115,6 @@ nav {
   padding-right: 25px;
 }
 
-
-
 main {
   padding: 25px;
 }
@@ -117,7 +137,6 @@ tr {
   align-content: right;
 }
 
-
 input[type="text"] {
 width: 200px;
 }
@@ -135,7 +154,6 @@ input[type="text2"] {
   flex-direction: row;
   align-content: left;
 }
-
 
 .btn {
   background: #b3db30;
@@ -164,37 +182,12 @@ input[type="text2"] {
   text-decoration: none;
 }
 
-#image {
-  padding:5px;
-  margin:5px;
-  border:2px solid #021a40;
-  background-color:#fff;
-  width: 121px;
-  height: 101px;
-  float: left;
-}
-
-#image2 {
-  padding:5px;
-  margin:5px;
-  border:2px solid #021a40;
-  background-color:#fff;
-  width: 277px;
-  height: 222px;
-  float: left;
-}
-#table {
-    margin-left: 50px;
-    height: 125px;
-    text-align: left;
-  }
-
-  .list {
+.list {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   width: 400px;
-   height: 580px;
+   height: 780px;
      content: "";
   opacity: 0.72;
   padding: 60px 0 0;
@@ -287,4 +280,37 @@ label + input {
 
 input + input {
     float: right;
+}
+
+/*table.reciept {
+  margin-right: 30px;
+}
+table.reciept  td, th{
+   
+    text-align: right;
+    column-width: 250;
+  }
+ table.reciept   td {
+    padding: 5px 5px 0px 0px;
+    font-family: 'Dekko', serif;
+  }
+
+ table.reciept   th {
+    padding: 0px 5px 10px 0px;
+    border-bottom: 1px solid ivory;
+  }
+  table.reciept   tr {
+    align-content: right;
+  }*/
+
+}
+#thanks {
+
+  position: fixed;
+  width: 500px;
+  height: 200px;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px; /* Negative half of height. */
+  margin-left: -250px; /* Negative half of width. */
 }

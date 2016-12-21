@@ -1,31 +1,35 @@
-<h2>   Add a New Customer</h2>
+<h2>   Ammend - <%= @customer.name %></h2>
 <hr>
 <hr>
 
 <table>
-<form action="/customers/<%= @customer.id %>" method="post">
-  <tr><td><label> 
-    Name:
-    <input type="text" name="name" value='<%= @customer.name %>'>
-  </label></td></tr>
-  <tr><td><label> 
-    Street:
-    <input type="text" name="address_line_1" value="<%= @customer.address_line_1%>">
-  </label></td></tr>
-  <tr><td><label> 
-    Town:
-    <input type="text" name="address_line_2" value="<%= @customer.address_line_2 %>">
-  </label></td></tr>
-  <tr><td><label> 
-    Postcode:
-    <input type="text" name="postcode" value="<%= @customer.postcode %>">
-  </label></td></tr>
-  <tr><td><label> 
-    Allowed Credit:
-      <input type="number" name="funds" value="<%= @customer.funds %>">
-    </label></td></tr>
+  <form action="/customers/<%= @customer.id %>" method="post">
+    <tr>
+      <td><label> Name:</label></td>
+      <td><input type="text" name="name" value="<%= @customer.name %>" required></td>
+    </tr>
+    <tr>
+      <td><label> Street:</label></td>
+      <td><input type="text" name="address_line_1" value="<%= @customer.address_line_1%>" required></td>
+    </tr>
+    <tr>
+      <td><label> Town:</label></td>
+      <td><input type="text" name="address_line_2" value="<%= @customer.address_line_2 %>" required></td>
+    </tr>
+    <tr>
+      <td><label> Postcode:</label></td>
+      <td><input type="text" name="postcode" value="<%= @customer.postcode %>" required></td>
+    </tr>
+    <tr>
+      <td><label> Allowed Credit Limit:</label></td>
+      <td>£ <input type="number" name="funds" value="<%= @customer.funds %>" required></td>
+    </tr>
+    <tr>
+      <td><label> Email Address:</label></td>
+      <td><input type="text" name="email" value="<%= @customer.email %>" required></td>
+    </tr>
 
-  <tr><td><input type="submit" value="Ammend Customer"/></td></tr>
-</form>
+    <tr><td><input type="submit" value="Ammend Customer"/></td></tr>
+  </form>
 </table>
 <hr>
