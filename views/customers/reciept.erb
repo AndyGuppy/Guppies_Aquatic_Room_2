@@ -1,0 +1,30 @@
+
+
+<div class ="list"><img src="/images/logo.png" alt="logo" height="50" width="350"/><br>Glenrothes<br>kY7 5AW<br> Tel 01592.. you wished <br><br>Reciept for your purchase :-<br><table>
+  <tr>
+    <th>Qty</th>
+    <th></th>
+    <th>Product</th>
+    <th></th>
+    <th>Price</th>
+    <th></th>
+    <th>Item Total</th>
+  </tr>
+<% for basket in @basket %>
+<tr>
+  <td><%= basket.quantity %></td>
+  <td>|</td>
+  <td><%= basket.specie %></td>
+  <td>|</td>
+  <td>£<%= sprintf("%.2f",basket.price) %></td>
+  <td>|</td>
+  <td>£<%=sprintf("%.2f", (basket.price.to_f * basket.quantity.to_i) )%></td>
+  <td>|</td>
+  </tr><br>
+    <% end %>
+
+
+    </table>
+    Credit Balance = £ <%= sprintf("%.2f",@customer.funds) %><br>
+    Basket Total = £ <%= sprintf("%.2f",@total) %><br>
+    <tr></div><div>  see if i can get this done </div>

@@ -2,7 +2,7 @@ require( 'sinatra' )
 require( 'pry-byebug')
 require( 'sinatra/contrib/all' ) if development?
 require_relative( '../models/product_class.rb' )
-
+require_relative( '../models/customer_class.rb' )
 
 #get all products
 get '/products' do
@@ -28,6 +28,13 @@ get ('/products/:id/:referer/view') do
 @product = Product.find(params[:id])
 @return = params[:referer]
 erb(:"products/view")
+end
+
+#product view
+get ('/products/:id/buy') do
+@product = Product.find(params[:id])
+@customers = Customer.all()
+erb(:"products/buy")
 end
 
 get '/products/:return/return' do

@@ -15,7 +15,7 @@
         <tr><div id="head"> <%= product.specie %></div></tr>
         <tr>Price --> £<%= sprintf("%.2f", product.price) %></tr><br>
         <tr>Avaliable --> <%= product.quantity %>   
-         <form action="/<%= product.id() %>/buy" method="get"><input class="submit_button" type="submit" value="Buy"></form>  
+         <form action="/products/<%= product.id() %>/buy" method="get"><input class="submit_button" type="submit" value="Add to Basket"></form>  
          <td><form action="/products/<%= product.id() %>/<%= "index"%>/view" method="get"><input class="submit_button" type="submit" value="More Info"></form></td></tr>
        </div> </div>
        <% end %>

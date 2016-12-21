@@ -103,4 +103,13 @@ end
       sql = "DELETE FROM products WHERE id=#{id}"
       SqlRunner.run( sql )
     end
+
+    def self.reduced_by(specie,qty)
+      sql = "UPDATE products SET
+      quantity = quantity - #{qty.to_i}
+      WHERE specie ='#{specie}';"
+      # binding.pry
+      SqlRunner.run( sql )
+
+    end
   end

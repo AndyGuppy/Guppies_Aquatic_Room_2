@@ -4,7 +4,7 @@ require('pry-byebug')
 class Customer
 
   attr_reader :id
-  attr_accessor :name, :address_line_1, :address_line_2, :postcode, :funds
+  attr_accessor :name, :address_line_1, :address_line_2, :postcode, :funds, :email
 
   def initialize ( options )
     @id = nil || options['id'].to_i
@@ -13,14 +13,15 @@ class Customer
     @address_line_2 = options['address_line_2']
     @postcode = options['postcode']
     @funds = options['funds']
+    @email = options['email']
   end
 
   def save()
     sql = "
     INSERT INTO customers 
-    (name, address_line_1, address_line_2, postcode, funds ) 
+    (name, address_line_1, address_line_2, postcode, funds, email ) 
     VALUES 
-    ('#{ @name }','#{ @address_line_1 }','#{ @address_line_2 }','#{ @postcode }',#{ @funds }) 
+    ('#{ @name }','#{ @address_line_1 }','#{ @address_line_2 }','#{ @postcode }',#{ @funds }, '#{ @email }') 
     RETURNING id
     "
     customer = SqlRunner.run( sql ).first
@@ -101,13 +102,21 @@ class Customer
           address_line_1='#{options['address_line_1']}',
           address_line_2='#{options['address_line_2']}',
           postcode='#{options['postcode']}',
-          funds=#{options['funds']}
-          WHERE id='#{options['id']}'"
+          funds=#{options['funds']},
+          email = '#{ @email }'
+          WHERE id='#{options['id']}';"
     SqlRunner.run( sql )
   end
 
   def self.destroy( id )
-    sql = "DELETE FROM customers WHERE id=#{id}"
+    sql = "DELETE FROM customers WHERE id=#{id};"
     SqlRunner.run( sql )
   end
+
+  def self.reduced_by(id,amount)
+    sql = "UPDATE Customers SET
+    funds = funds - #{amount.to_f}
+    WHERE id =#{id};"
+    SqlRunner.run( sql )
+end
 end

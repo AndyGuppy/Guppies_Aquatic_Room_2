@@ -1,0 +1,10 @@
+<h2><p id="head"><%=@product.specie %></p> Price : - £<%=sprintf("%.2f",@product.price) %> </h2>
+<hr>
+
+<form action="/customers/<%=@product.id%>/<%=@customer.id%>/buy" method="post"> 
+    <h3><p><%=@customer.name %> you have £<%=@customer.funds%> avaliable to spend</p>
+    <p>How many <%=@product.specie%> would you like at  £<%=sprintf("%.2f", @product.price)%>?</p>
+    <p>There is curently <%=@product.quantity %> avaliable to buy - - <input type="number" name="quantity" min="0" max="<%= @product.quantity%>"  required/> <br><input type="submit" value="Buy"/></p></h3>
+</form>
+
+<hr>
