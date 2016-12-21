@@ -121,7 +121,7 @@ main {
 
 td, th {
   /*text-align: left;*/
-  column-width: 150;
+  column-width: 250;
 }
 
 td {
@@ -268,7 +268,7 @@ label, input {
 }
 
 label {
-    width: 30%;
+    width: 100%;
     text-align: right;
 }
 
